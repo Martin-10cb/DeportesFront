@@ -49,7 +49,9 @@ export const MyButton = ({
               : calculateSize(height || '100%', 'height', 150),
         },
       ]}>
-      <Text style={styles.text}>{placeholder}</Text>
+      <View>
+        <Text style={styles.text}>{placeholder}</Text>
+      </View>
     </TouchableOpacity>
   );
 };

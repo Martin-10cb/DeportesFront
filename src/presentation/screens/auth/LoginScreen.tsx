@@ -1,37 +1,55 @@
-import {Button, Input, Layout, Text} from '@ui-kitten/components'; // Importa componentes de UI de la biblioteca UI Kitten
-import {useWindowDimensions, Alert, StyleSheet} from 'react-native'; // Importa hook para dimensiones de ventana y componente Alert de React Native
-import {ScrollView} from 'react-native-gesture-handler'; // Importa componente ScrollView de React Native Gesture Handler
-import {RootStackParams} from '../../navigation/StackNavigator'; // Importa tipos de parámetros de navegación
-import {StackScreenProps} from '@react-navigation/stack'; // Importa tipos de props de pantalla de la biblioteca de navegación
-import {useState} from 'react'; // Importa el hook useState de React
+import {Button, Input, Layout, Text} from '@ui-kitten/components';
+import {
+  useWindowDimensions,
+  Alert,
+  StyleSheet,
+  Image,
+  View,
+} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {RootStackParams} from '../../navigation/StackNavigator';
+import {StackScreenProps} from '@react-navigation/stack';
+import {useState} from 'react';
 import {MyIcon} from '../../components/MyIcon';
+import {MyButton} from '../../components/MyButton';
 
-//Define el compoonente
 interface Props extends StackScreenProps<RootStackParams, 'LoginScreen'> {}
 
-//Define el componente de la pantalla de inicio de sesion
 export const LoginScreen = ({navigation}: Props) => {
-  const {height} = useWindowDimensions(); //Obtiene la altura de la ventana
-  const [nombreUsuario, setNombreUsuario] = useState(''); //Estado para el nombre de usuario
-  const [password, setPassword] = useState(''); //Estado para la contraseña del usuario
+  const {height} = useWindowDimensions();
+  const [nombreUsuario, setNombreUsuario] = useState('');
+  const [password, setPassword] = useState('');
 
-  //Renderiza la interfaz de la pantalla de inicio de sesion
+  const handleMainScreen = () => {
+    navigation.navigate('RegisterUserScreen');
+  };
+
   return (
     <Layout style={{flex: 1}}>
-      {/* Encabezado */}
+      <View style={styles.imageContenedor}>
+        <Image
+          source={require('../../img/logo_2.png')}
+          style={styles.imageLogo}
+          alt="Logo"
+        />
+      </View>
       <ScrollView style={{marginHorizontal: 40}}>
-        <Layout style={{paddingTop: height * 0.35}}>
-          <Text category="h1">Ingresar</Text>
-          <Text category="p2">Por favor, ingrese para continuar</Text>
+        <Layout>
+          <Text category="h1" style={{textAlign: 'center'}}>
+            Iniciar sesion
+          </Text>
+          <Image
+            source={require('../../img/profile-userblack.png')}
+            style={styles.image}
+            alt="Perfil"
+          />
         </Layout>
-
-        {/* inputs del nombre del usuario y contraseña*/}
-        <Layout style={{marginTop: 20}}>
+        <Layout>
           <Input
-            placeholder="Nombre de Usuario"
+            placeholder="Correo"
             autoCapitalize="none"
             accessoryLeft={() => <MyIcon name="person-outline" />}
-            style={{marginBottom: 10}}
+            style={{marginBottom: 20}}
             value={nombreUsuario}
             onChangeText={setNombreUsuario}
           />
@@ -50,42 +68,36 @@ export const LoginScreen = ({navigation}: Props) => {
 
         {/*Boton de inicio de sesion */}
         <Layout>
-          <Button
-            accessoryRight={() => <MyIcon name="log-in-outline" white />}
-            appearance="filled"
-            style={globalStyles.button}>
-            <Text>Ingresar</Text>
-          </Button>
-        </Layout>
-
-        <Layout style={{marginTop: 30}} />
-
-        {/*Enlace de para registro de usuario*/}
-        <Layout
-          style={{
-            alignItems: 'flex-end',
-            flexDirection: 'row',
-            justifyContent: 'center',
-          }}>
-          <Text>¿No tienes cuenta?</Text>
-          <Text
-            status="primary"
-            category="s1"
-            onPress={() => navigation.navigate('RegisterUserScreen')}>
-            Crea una
-          </Text>
+          <MyButton
+            placeholder="Iniciar Sesion"
+            onPress={handleMainScreen}></MyButton>
         </Layout>
       </ScrollView>
     </Layout>
   );
 };
 
-const globalStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
     backgroundColor: '#879EF4',
     width: '100%',
     height: 'auto',
     borderRadius: 15,
     justifyContent: 'center',
+  },
+  image: {
+    width: '100%',
+    height: '50%',
+    marginTop: 20,
+    resizeMode: 'contain',
+  },
+  imageLogo: {
+    width: '40%',
+    height: '100%',
+    resizeMode: 'contain',
+  },
+  imageContenedor: {
+    width: '100%',
+    height: '20%',
   },
 });

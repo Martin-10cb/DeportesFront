@@ -3,12 +3,17 @@ import {StyleSheet, View, Text, Image} from 'react-native'; // Cambia aquí la i
 import {MyButton} from '../../components/MyButton';
 import {RootStackParams} from '../../navigation/StackNavigator';
 import {StackScreenProps} from '@react-navigation/stack';
+import {Button, ButtonGroup} from '@ui-kitten/components';
 
 interface Props extends StackScreenProps<RootStackParams, 'WelcomeScreen'> {}
 
 export const WelcomeScreen = ({navigation}: Props) => {
-  const handleLogin = () => {
+  const handleLoginScreen = () => {
     navigation.navigate('LoginScreen');
+  };
+
+  const handleRegisterScreen = () => {
+    navigation.navigate('RegisterUserScreen');
   };
 
   return (
@@ -19,8 +24,8 @@ export const WelcomeScreen = ({navigation}: Props) => {
         alt="Logo" // 'alt' no es necesario en React Native
       />
       <View style={styles.buttons}>
-        <MyButton placeholder="Iniciar Sesion" onPress={handleLogin} />
-        <MyButton placeholder="Registrarse" onPress={handleLogin} />
+        <MyButton placeholder="Iniciar Sesion" onPress={handleLoginScreen} />
+        <MyButton placeholder="Registrarse" onPress={handleRegisterScreen} />
       </View>
     </View>
   );
