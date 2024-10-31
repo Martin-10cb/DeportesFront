@@ -9,14 +9,21 @@ import {
 import {ScrollView} from 'react-native-gesture-handler';
 import {RootStackParams} from '../../navigation/StackNavigator';
 import {StackScreenProps} from '@react-navigation/stack';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {MyIcon} from '../../components/MyIcon';
 import {MyButton} from '../../components/MyButton';
+import { ThemeContext } from '../../../MainApp';
 
-interface Props
-  extends StackScreenProps<RootStackParams, 'RegisterUserScreen'> {}
+
+interface Props extends StackScreenProps<RootStackParams, 'RegisterUserScreen'> {}
+
+const lightLogo = require('../../img/logo_2.png');
+const darkLogo = require('../../img/logo-white.png');
+const lightUser = require('../../img/profile-userblack.png');
+const darkUser = require('../../img/profile-userwhite.png');
 
 export const RegisterUserScreen = ({navigation}: Props) => {
+  const { theme } = useContext(ThemeContext);
   const {height} = useWindowDimensions();
   const [nombreUsuario, setNombreUsuario] = useState('');
   const [password, setPassword] = useState('');
@@ -25,11 +32,41 @@ export const RegisterUserScreen = ({navigation}: Props) => {
     navigation.navigate('RegisterUserScreen');
   };
 
+  const styles = StyleSheet.create({
+    button: {
+      backgroundColor: '#879EF4',
+      width: '100%',
+      height: 'auto',
+      borderRadius: 15,
+      justifyContent: 'center',
+    },
+    image: {
+      width: '100%',
+      height: '50%',
+      marginTop: 20,
+      resizeMode: 'contain',
+    },
+    imageLogo: {
+      width: '30%',
+      height: '100%',
+      resizeMode: 'contain',
+    },
+    imageContenedor: {
+      width: '100%',
+      height: '10%',
+    },
+    input: {
+      marginBottom: 20,
+      backgroundColor: 'transparent',
+      borderColor: theme == 'dark' ? 'white' : 'black',
+    }
+  });
+
   return (
-    <Layout style={{flex: 1}}>
-      <View style={styles.imageContenedor}>
+    <View style={{flex: 1}}>
+      <View style={styles.imageContenedor} onTouchEnd={()=>navigation.navigate('WelcomeScreen')}>
         <Image
-          source={require('../../img/logo_2.png')}
+          source={theme == 'dark' ? darkLogo : lightLogo}
           style={styles.imageLogo}
           alt="Logo"
         />
@@ -37,20 +74,20 @@ export const RegisterUserScreen = ({navigation}: Props) => {
       <ScrollView style={{marginHorizontal: 40}}>
         <View>
           <Text category="h1" style={{textAlign: 'center'}}>
-            Iniciar sesion
+            Registro
           </Text>
           <Image
-            source={require('../../img/profile-userblack.png')}
+            source={theme == 'dark' ? darkUser : lightUser}
             style={styles.image}
             alt="Perfil"
           />
         </View>
-        <Layout>
+        <View>
           <Input
             placeholder="Correo"
             autoCapitalize="none"
             accessoryLeft={() => <MyIcon name="email-outline" />}
-            style={{marginBottom: 20}}
+            style={styles.input}
             value={nombreUsuario}
             onChangeText={setNombreUsuario}
           />
@@ -59,7 +96,7 @@ export const RegisterUserScreen = ({navigation}: Props) => {
             autoCapitalize="none"
             secureTextEntry
             accessoryLeft={() => <MyIcon name="lock-outline" />}
-            style={{marginBottom: 20}}
+            style={styles.input}
             value={password}
             onChangeText={setPassword}
           />
@@ -68,7 +105,7 @@ export const RegisterUserScreen = ({navigation}: Props) => {
             autoCapitalize="none"
             secureTextEntry
             accessoryLeft={() => <MyIcon name="person-outline" />}
-            style={{marginBottom: 20}}
+            style={styles.input}
             value={password}
             onChangeText={setPassword}
           />
@@ -77,44 +114,19 @@ export const RegisterUserScreen = ({navigation}: Props) => {
             autoCapitalize="none"
             secureTextEntry
             accessoryLeft={() => <MyIcon name="hash-outline" />}
-            style={{marginBottom: 20}}
+            style={styles.input}
             value={password}
             onChangeText={setPassword}
           />
-        </Layout>
+        </View>
 
-        <Layout style={{marginTop: 20}} />
+        <View style={{marginTop: 20}} />
 
         {/*Boton de inicio de sesion */}
-        <Layout>
+        <View>
           <MyButton placeholder="Crear" onPress={handleMainScreen}></MyButton>
-        </Layout>
+        </View>
       </ScrollView>
-    </Layout>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#879EF4',
-    width: '100%',
-    height: 'auto',
-    borderRadius: 15,
-    justifyContent: 'center',
-  },
-  image: {
-    width: '100%',
-    height: '50%',
-    marginTop: 20,
-    resizeMode: 'contain',
-  },
-  imageLogo: {
-    width: '30%',
-    height: '100%',
-    resizeMode: 'contain',
-  },
-  imageContenedor: {
-    width: '100%',
-    height: '10%',
-  },
-});
