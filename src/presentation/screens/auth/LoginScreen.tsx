@@ -28,7 +28,7 @@ export const LoginScreen = ({navigation}: Props) => {
   const [password, setPassword] = useState('');
 
   const handleMainScreen = () => {
-    navigation.navigate('TeamListScreen');
+    navigation.navigate('LeagueListScreen');
   };
 
   const styles = StyleSheet.create({
