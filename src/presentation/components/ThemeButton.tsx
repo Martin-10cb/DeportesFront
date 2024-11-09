@@ -7,7 +7,7 @@ export const ThemeButton = ({ style }: {style?: object}) => {
 
     return (
         <View style={{...style, ...styles.button}} onTouchEnd={toggleTheme}>
-            <Image source={require('../img/moonprueba.png')} style={styles.image} />
+            <Image source={require('../img/theme-switch.png')} style={styles.image} />
         </View>
     );
 }

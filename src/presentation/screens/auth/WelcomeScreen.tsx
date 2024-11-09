@@ -9,8 +9,8 @@ import { ThemeContext } from '../../../MainApp';
 
 interface Props extends StackScreenProps<RootStackParams, 'WelcomeScreen'> {}
 
-const lightLogo = require('../../img/logo_2.png');
-const darkLogo = require('../../img/logo-white.png');
+const lightLogo = require('../../img/full-logo-black.png');
+const darkLogo = require('../../img/full-logo-white.png');
 
 export const WelcomeScreen = ({navigation}: Props) => {
   const { theme } = useContext(ThemeContext);

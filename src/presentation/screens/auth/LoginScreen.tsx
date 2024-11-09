@@ -16,10 +16,10 @@ import { ThemeContext } from '../../../MainApp';
 
 interface Props extends StackScreenProps<RootStackParams, 'LoginScreen'> {}
 
-const lightLogo = require('../../img/logo_2.png');
-const darkLogo = require('../../img/logo-white.png');
-const lightUser = require('../../img/profile-userblack.png');
-const darkUser = require('../../img/profile-userwhite.png');
+const lightLogo = require('../../img/full-logo-black.png');
+const darkLogo = require('../../img/full-logo-white.png');
+const lightUser = require('../../img/user-black.png');
+const darkUser = require('../../img/user-white.png');
 
 export const LoginScreen = ({navigation}: Props) => {
   const { theme } = useContext(ThemeContext);
@@ -28,7 +28,7 @@ export const LoginScreen = ({navigation}: Props) => {
   const [password, setPassword] = useState('');
 
   const handleMainScreen = () => {
-    navigation.navigate('RegisterUserScreen');
+    navigation.navigate('TeamListScreen');
   };
 
   const styles = StyleSheet.create({
