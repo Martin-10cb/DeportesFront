@@ -3,13 +3,13 @@ import { useContext } from 'react';
 import { RootStackParams } from '../navigation/StackNavigator';
 import { StackScreenProps } from '@react-navigation/stack';
 import { Header } from '../components/Header';
-import { GameCard } from '../components/GameCard';
+import { MatchCard } from '../components/MatchCard';
 import { LeagueCard } from '../components/LeagueCard';
 import { leagues } from '../../data/leagues';
 import { BackButton } from '../components/BackButton';
 import { ThemeContext } from '../../MainApp';
 
-interface Props extends StackScreenProps<RootStackParams, 'GameListScreen'> {}
+interface Props extends StackScreenProps<RootStackParams, 'MatchListScreen'> {}
 
 const games = [
     {
@@ -46,7 +46,7 @@ const games = [
     },
 ];
 
-export const GameListScreen = ({ navigation, route }: Props) => {
+export const MatchListScreen = ({ navigation, route }: Props) => {
     const { leagueId } = route.params;
     const league = leagues.find(item => item.id == route.params.leagueId);
 
@@ -75,7 +75,7 @@ export const GameListScreen = ({ navigation, route }: Props) => {
             <FlatList
                 data={games}
                 renderItem={({ item }) => (
-                    <GameCard
+                    <MatchCard
                         leftTeamLogo={item.teamA}
                         rightTeamLogo={item.teamB}
                     />

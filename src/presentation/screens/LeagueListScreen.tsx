@@ -19,7 +19,7 @@ export const LeagueListScreen = ({ navigation }: Props) => {
                         name={item.name}
                         onPress={() => {
                             if (item.id) {
-                                navigation.navigate('GameListScreen', { leagueId: item.id });
+                                navigation.navigate('MatchListScreen', { leagueId: item.id });
                             }
                         }}
                     />

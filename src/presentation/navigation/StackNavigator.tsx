@@ -3,14 +3,14 @@ import {LoginScreen} from '../screens/auth/LoginScreen';
 import {RegisterUserScreen} from '../screens/auth/RegisterUserScreen';
 import {WelcomeScreen} from '../screens/auth/WelcomeScreen';
 import { LeagueListScreen } from '../screens/LeagueListScreen';
-import { GameListScreen } from '../screens/GameListScreen';
+import { MatchListScreen } from '../screens/MatchListScreen';
 
 export type RootStackParams = {
   LoginScreen: undefined;
   RegisterUserScreen: undefined;
   WelcomeScreen: undefined;
   LeagueListScreen: undefined,
-  GameListScreen: { leagueId: string }
+  MatchListScreen: { leagueId: string }
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -24,7 +24,7 @@ export const StackNavigator = () => {
       <Stack.Screen name="RegisterUserScreen" component={RegisterUserScreen} />
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
       <Stack.Screen name="LeagueListScreen" component={LeagueListScreen} />
-      <Stack.Screen name="GameListScreen" component={GameListScreen} />
+      <Stack.Screen name="MatchListScreen" component={MatchListScreen} />
     </Stack.Navigator>
   );
 };

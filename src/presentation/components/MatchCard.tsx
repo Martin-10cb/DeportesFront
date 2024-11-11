@@ -12,7 +12,7 @@ interface Props {
     onPress?: Function,
 }
 
-export const GameCard = (props: Props) => {
+export const MatchCard = (props: Props) => {
     const { theme } = useContext(ThemeContext);
     const isDark = theme == 'dark';
 
