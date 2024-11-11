@@ -18,7 +18,7 @@ export const LeagueListScreen = ({ navigation }: Props) => {
                         logo={item.logo} 
                         name={item.name}
                         onPress={() => {
-                            if (item.id) {
+                            if (item.enabled) {
                                 navigation.navigate('MatchListScreen', { leagueId: item.id });
                             }
                         }}
