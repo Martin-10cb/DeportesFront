@@ -1,6 +1,8 @@
 import { ImageSourcePropType } from "react-native";
 
-interface ILeague {
+const logosPath = '../presentation/img/leagues/';
+
+export interface ILeague {
     id: string,
     name: string,
     logo: ImageSourcePropType,
@@ -11,25 +13,25 @@ export const leagues: ILeague[] = [
     {
         id: 'premier',
         name: 'Premier League',
-        logo: require('../presentation/img/leagues/premier.png'),
+        logo: require(`${logosPath}premier.png`),
         enabled: true
     },
     {
         id: 'champions',
         name: 'Champions League',
-        logo: require('../presentation/img/leagues/champions.png'),
+        logo: require(`${logosPath}champions.png`),
         enabled: false
     },
     {
         id: 'laliga',
         name: 'LALIGA',
-        logo: require('../presentation/img/leagues/laliga.png'),
+        logo: require(`${logosPath}/laliga.png`),
         enabled: false
     },
     {
         id: 'bundesliga',
         name: 'Bundesliga',
-        logo: require('../presentation/img/leagues/bundesliga.png'),
+        logo: require(`${logosPath}bundesliga.png`),
         enabled: false
     }
 ];
