@@ -25,7 +25,7 @@ export const MatchDetailsScreen = ({ navigation, route }: Props) => {
     return (
         <>
             <Header />
-            <BackButton navigation={navigation} />
+            <BackButton />
             <MatchCard leftTeamLogo={leftTeamLogo} rightTeamLogo={rightTeamLogo} />
         </>
     );

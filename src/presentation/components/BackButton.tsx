@@ -1,16 +1,13 @@
 import { View, Image } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useContext } from 'react';
 import { ThemeContext } from '../../MainApp';
+import { useNavigation } from '@react-navigation/native';
 
 const iconBlack = require('../img/back-arrow-black.png');
 const iconWhite = require('../img/back-arrow-white.png');
 
-interface Props {
-    navigation: StackNavigationProp<any>
-}
-
-export const BackButton = ({ navigation }: Props) => {
+export const BackButton = () => {
+    const navigation = useNavigation();
     const { theme } = useContext(ThemeContext);
     const isDark = theme == 'dark';
     const icon = isDark ? iconWhite : iconBlack;

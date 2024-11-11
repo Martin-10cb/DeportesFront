@@ -70,7 +70,7 @@ export const MatchListScreen = ({ navigation, route }: Props) => {
     return (
         <>
             <Header />
-            <BackButton navigation={navigation} />
+            <BackButton />
             <LeagueCard name={league.name} logo={league.logo} />
             <Text style={styles.text} >Jornada XX</Text>
             <FlatList
