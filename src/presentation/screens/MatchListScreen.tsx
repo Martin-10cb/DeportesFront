@@ -62,15 +62,16 @@ export const MatchListScreen = ({ navigation, route }: Props) => {
             fontSize: 18,
             fontWeight: 'bold',
             color: isDark ? 'white' : 'black',
-            marginVertical: 8
+            marginVertical: 8,
+            paddingLeft: 16
         }
     });
 
     return (
         <>
             <Header />
-            <BackButton onClick={() => navigation.navigate('LeagueListScreen')} />
-            <LeagueCard name='Champions' logo={league.logo} />
+            <BackButton navigation={navigation} />
+            <LeagueCard name={league.name} logo={league.logo} />
             <Text style={styles.text} >Jornada XX</Text>
             <FlatList
                 data={games}
@@ -78,6 +79,12 @@ export const MatchListScreen = ({ navigation, route }: Props) => {
                     <MatchCard
                         leftTeamLogo={item.teamA}
                         rightTeamLogo={item.teamB}
+                        onPress={() => {
+                            navigation.navigate('MatchDetailsScreen', {
+                                leftTeamLogo: item.teamA,
+                                rightTeamLogo: item.teamB
+                            });
+                        }}
                     />
                 )}
                 keyExtractor={(item, index) => String(index)}
