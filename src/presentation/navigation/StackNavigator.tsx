@@ -1,5 +1,4 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import { ImageSourcePropType } from 'react-native';
 import {LoginScreen} from '../screens/auth/LoginScreen';
 import {RegisterUserScreen} from '../screens/auth/RegisterUserScreen';
 import {WelcomeScreen} from '../screens/auth/WelcomeScreen';
@@ -15,8 +14,8 @@ export type RootStackParams = {
   LeagueListScreen: undefined,
   MatchListScreen: { leagueId: string }
   MatchDetailsScreen: { 
-    leftTeamLogo: ImageSourcePropType,
-    rightTeamLogo: ImageSourcePropType 
+    leftTeamId: string,
+    rightTeamId: string 
   },
   MenuScreen: undefined
 };

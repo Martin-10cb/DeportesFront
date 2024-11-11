@@ -8,43 +8,10 @@ import { LeagueCard } from '../components/LeagueCard';
 import { leagues } from '../../data/leagues';
 import { BackButton } from '../components/BackButton';
 import { ThemeContext } from '../../MainApp';
+import { matches } from '../../data/matches';
+import { teams } from '../../data/teams';
 
 interface Props extends StackScreenProps<RootStackParams, 'MatchListScreen'> {}
-
-const games = [
-    {
-        teamA: require('../img/teams/arsenal.png'),
-        teamB: require('../img/teams/brentford.png')
-    },
-    {
-        teamA: require('../img/teams/manchester.png'),
-        teamB: require('../img/teams/norwich.png')
-    },
-    {
-        teamA: require('../img/teams/wolves.png'),
-        teamB: require('../img/teams/leeds.png')
-    },
-    {
-        teamA: require('../img/teams/southampton.png'),
-        teamB: require('../img/teams/newcastle.png')
-    },
-    {
-        teamA: require('../img/teams/arsenal.png'),
-        teamB: require('../img/teams/brentford.png')
-    },
-    {
-        teamA: require('../img/teams/manchester.png'),
-        teamB: require('../img/teams/norwich.png')
-    },
-    {
-        teamA: require('../img/teams/wolves.png'),
-        teamB: require('../img/teams/leeds.png')
-    },
-    {
-        teamA: require('../img/teams/southampton.png'),
-        teamB: require('../img/teams/newcastle.png')
-    },
-];
 
 export const MatchListScreen = ({ navigation, route }: Props) => {
     const { leagueId } = route.params;
@@ -74,19 +41,28 @@ export const MatchListScreen = ({ navigation, route }: Props) => {
             <LeagueCard name={league.name} logo={league.logo} />
             <Text style={styles.text} >Jornada XX</Text>
             <FlatList
-                data={games}
-                renderItem={({ item }) => (
-                    <MatchCard
-                        leftTeamLogo={item.teamA}
-                        rightTeamLogo={item.teamB}
-                        onPress={() => {
-                            navigation.navigate('MatchDetailsScreen', {
-                                leftTeamLogo: item.teamA,
-                                rightTeamLogo: item.teamB
-                            });
-                        }}
-                    />
-                )}
+                data={matches}
+                renderItem={({ item }) => {
+                    const leftTeam = teams.find(team => team.id == item.firstTeamId);
+                    const rightTeam = teams.find(team => team.id == item.secondTeamId);
+
+                    if (!leftTeam || !rightTeam) {
+                        return <Text>No se encontró algún equipo</Text>;
+                    }
+
+                    return (
+                        <MatchCard
+                            leftTeamLogo={leftTeam.logo}
+                            rightTeamLogo={rightTeam.logo}
+                            onPress={() => {
+                                navigation.navigate('MatchDetailsScreen', {
+                                    leftTeamId: leftTeam.id,
+                                    rightTeamId: rightTeam.id
+                                });
+                            }}
+                        />
+                    );
+                }}
                 keyExtractor={(item, index) => String(index)}
             />
         </>
