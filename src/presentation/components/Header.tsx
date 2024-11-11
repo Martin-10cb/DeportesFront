@@ -1,12 +1,18 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useContext } from 'react';
 import { ThemeContext } from '../../MainApp';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParams } from '../navigation/StackNavigator';
 
 const logo = require('../img/logo.png');
 const menuIconLight = require('../img/menu-black.png');
 const menuIconDark = require('../img/menu-white.png');
 
+interface INavigator extends StackNavigationProp<RootStackParams> {}
+
 export const Header = () => {
+    const navigation = useNavigation<INavigator>();
     const { theme } = useContext(ThemeContext);
     const isDark = theme == 'dark';
 
@@ -52,7 +58,7 @@ export const Header = () => {
                 <Image style={styles.logo} source={logo} />
                 <Text style={styles.text}>SPORTANALYTICS</Text>
             </View>
-            <View style={styles.menuIconContainer}>
+            <View style={styles.menuIconContainer} onTouchEnd={() => navigation.navigate('MenuScreen')}>
                 <Image style={styles.menuIcon} source={menuIcon} />
             </View>
         </View>
