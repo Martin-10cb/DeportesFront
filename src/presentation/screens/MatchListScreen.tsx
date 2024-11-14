@@ -39,7 +39,7 @@ export const MatchListScreen = ({ navigation, route }: Props) => {
             <Header />
             <BackButton />
             <LeagueCard name={league.name} logo={league.logo} />
-            <Text style={styles.text} >Jornada XX</Text>
+            <Text style={styles.text} >Próximos partidos</Text>
             <FlatList
                 data={matches}
                 renderItem={({ item }) => {
