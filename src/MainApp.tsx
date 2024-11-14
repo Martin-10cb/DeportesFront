@@ -23,6 +23,7 @@ const darkTheme = {
 }
 
 export const ThemeContext = createContext<any>(undefined);
+export const APIContext = createContext<{apiUrl: string, setApiUrl: Function}>({apiUrl: '', setApiUrl: ()=>{}});
 
 //Exportamos el componente principal de la aplicacion
 export const MainApp = () => {
@@ -39,32 +40,36 @@ export const MainApp = () => {
     });
   };
 
+  const [apiUrl, setApiUrl] = useState(process.env.API_URL as string);
+
   // Renderizar el componente
   return (
     <>
       {/* Registro de íconos con el paquete de íconos de Eva */}
       <IconRegistry icons={EvaIconsPack} />
-      <ThemeContext.Provider value={{theme: colorScheme, toggleTheme}}>
-        {/* Proveedor de la aplicación con el tema seleccionado */}
-        <ApplicationProvider {...eva} theme={theme}>
-          {/* Contenedor de navegación configurado con los colores del tema */}
-          <NavigationContainer
-            theme={{
-              dark: colorScheme === 'dark',
-              colors: {
-                primary: theme['color-primary-500'],
-                background: backgroundColor,
-                card: theme['color-basic-100'],
-                text: theme['text-basic-color'],
-                border: theme['color-basic-800'],
-                notification: theme['color-primary-500'],
-              },
-            }}>
-            {/* Componente personalizado para gestionar la navegación tipo stack */}
-            <StackNavigator />
-          </NavigationContainer>
-        </ApplicationProvider>
-      </ThemeContext.Provider>
+      <APIContext.Provider value={{ apiUrl, setApiUrl}}>
+        <ThemeContext.Provider value={{theme: colorScheme, toggleTheme}}>
+          {/* Proveedor de la aplicación con el tema seleccionado */}
+          <ApplicationProvider {...eva} theme={theme}>
+            {/* Contenedor de navegación configurado con los colores del tema */}
+            <NavigationContainer
+              theme={{
+                dark: colorScheme === 'dark',
+                colors: {
+                  primary: theme['color-primary-500'],
+                  background: backgroundColor,
+                  card: theme['color-basic-100'],
+                  text: theme['text-basic-color'],
+                  border: theme['color-basic-800'],
+                  notification: theme['color-primary-500'],
+                },
+              }}>
+              {/* Componente personalizado para gestionar la navegación tipo stack */}
+              <StackNavigator />
+            </NavigationContainer>
+          </ApplicationProvider>
+        </ThemeContext.Provider>
+      </APIContext.Provider>
     </>
   );
 };
