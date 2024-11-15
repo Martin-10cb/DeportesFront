@@ -12,7 +12,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {useState, useContext} from 'react';
 import {MyIcon} from '../../components/MyIcon';
 import {MyButton} from '../../components/MyButton';
-import { ThemeContext } from '../../../MainApp';
+import { APIContext, ThemeContext } from '../../../MainApp';
 
 interface Props extends StackScreenProps<RootStackParams, 'LoginScreen'> {}
 
@@ -23,12 +23,37 @@ const darkUser = require('../../img/user-white.png');
 
 export const LoginScreen = ({navigation}: Props) => {
   const { theme } = useContext(ThemeContext);
+  const { apiUrl } = useContext(APIContext);
   const {height} = useWindowDimensions();
-  const [nombreUsuario, setNombreUsuario] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleMainScreen = () => {
-    navigation.navigate('LeagueListScreen');
+  const handleLogin = () => {
+    console.log(`Email:${email}\nPassword: ${password}`);
+
+    if (!email || !password) {
+      return;
+    }
+
+    const body = new FormData();
+    body.append('email', email);
+    body.append('password', password);
+
+    fetch(`${apiUrl}/login`, {
+      method: 'POST',
+      body: body,
+    })
+      .then(async res => {
+        const json = (await res.json()) as {detail: string};
+
+        if (!res.ok) {
+          Alert.alert('No ha sido posible iniciar sesión', json.detail);
+          return;
+        }
+
+        navigation.navigate('LeagueListScreen');
+      })
+      .catch(error => Alert.alert('Ha ocurrido un error', error.message));
   };
 
   const styles = StyleSheet.create({
@@ -85,10 +110,10 @@ export const LoginScreen = ({navigation}: Props) => {
           <Input
             placeholder="Correo"
             autoCapitalize="none"
-            accessoryLeft={() => <MyIcon name="person-outline" />}
+            accessoryLeft={() => <MyIcon name="email-outline" />}
             style={styles.input}
-            value={nombreUsuario}
-            onChangeText={setNombreUsuario}
+            value={email}
+            onChangeText={setEmail}
           />
           <Input
             placeholder="Contraseña"
@@ -107,7 +132,7 @@ export const LoginScreen = ({navigation}: Props) => {
         <View>
           <MyButton
             placeholder="Iniciar Sesion"
-            onPress={handleMainScreen}></MyButton>
+            onPress={handleLogin}></MyButton>
         </View>
       </ScrollView>
     </View>
