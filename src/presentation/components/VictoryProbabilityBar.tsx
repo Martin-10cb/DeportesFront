@@ -7,11 +7,19 @@ interface Props {
     leftTeamProbability: number,
     rightTeamName: string,
     rightTeamProbability: number,
+    drawProbability: number,
     style?: StyleProp<ViewStyle>
 }
 
 export const VictoryProbabilityBar = (props: Props) => {
-    const { leftTeamName, leftTeamProbability, rightTeamName, rightTeamProbability} = props;
+    const { leftTeamName, leftTeamProbability, rightTeamName, rightTeamProbability, drawProbability} = props;
+    const leftProbDigits = leftTeamProbability < 10 ? 2 : 3;
+    const rightProbDigits = rightTeamProbability < 10 ? 2 : 3;
+    const drawProbDigits = drawProbability < 10 ? 2 : 3;
+    const leftProbFixed = leftTeamProbability.toPrecision(leftProbDigits);
+    const rightProbFixed = rightTeamProbability.toPrecision(rightProbDigits);
+    const drawProbFixed = drawProbability.toPrecision(drawProbDigits);
+
     const { theme } = useContext(ThemeContext);
     const isDark = theme == 'dark';
     const styles = StyleSheet.create({
@@ -53,9 +61,9 @@ export const VictoryProbabilityBar = (props: Props) => {
                 <Text style={styles.text}>{rightTeamName}</Text>
             </View>
             <View style={styles.labelContainer}>
-                <Text style={styles.text}>{leftTeamProbability}%</Text>
-                <Text style={styles.text}>{(100-leftTeamProbability-rightTeamProbability).toPrecision(3)}%</Text>
-                <Text style={styles.text}>{rightTeamProbability}%</Text>
+                <Text style={styles.text}>{leftProbFixed}%</Text>
+                <Text style={styles.text}>{drawProbFixed}%</Text>
+                <Text style={styles.text}>{rightProbFixed}%</Text>
             </View>
             <View style={styles.barContainer}>
                 <View style={{width: `${leftTeamProbability}%`, ...styles.bar}} />
