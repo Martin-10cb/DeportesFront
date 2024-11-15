@@ -11,6 +11,7 @@ interface Props extends StackScreenProps<RootStackParams, 'WelcomeScreen'> {}
 
 const lightLogo = require('../../img/full-logo-black.png');
 const darkLogo = require('../../img/full-logo-white.png');
+const configIcon = require('../../img/config-icon.png');
 
 export const WelcomeScreen = ({navigation}: Props) => {
   const { theme } = useContext(ThemeContext);
@@ -36,6 +37,10 @@ export const WelcomeScreen = ({navigation}: Props) => {
       </View>
 
       <ThemeButton style={styles.themeButtonContainer} />
+
+      <View style={styles.configIconContainer} onTouchEnd={() => navigation.navigate('MenuScreen')}>
+        <Image style={styles.configIcon} source={configIcon}/>
+      </View>
       
     </View>
   );
@@ -61,5 +66,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 20,
     bottom: 100
+  },
+  configIconContainer: {
+    position: 'absolute',
+    right: 20,
+    bottom: 100,
+    height: 40,
+    width: 40
+  },
+  configIcon: {
+    width: '100%',
+    height: '100%'
   }
 });
