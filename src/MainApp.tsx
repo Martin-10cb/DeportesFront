@@ -47,7 +47,7 @@ export const MainApp = () => {
     <>
       {/* Registro de íconos con el paquete de íconos de Eva */}
       <IconRegistry icons={EvaIconsPack} />
-      <APIContext.Provider value={{ apiUrl, setApiUrl}}>
+      <APIContext.Provider value={{ apiUrl: apiUrl, setApiUrl}}>
         <ThemeContext.Provider value={{theme: colorScheme, toggleTheme}}>
           {/* Proveedor de la aplicación con el tema seleccionado */}
           <ApplicationProvider {...eva} theme={theme}>
