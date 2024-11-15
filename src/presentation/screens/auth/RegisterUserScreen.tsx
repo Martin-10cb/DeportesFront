@@ -33,8 +33,12 @@ export const RegisterUserScreen = ({navigation}: Props) => {
   const [age, setAge] = useState('');
 
   const handleRegisterUser = () => {
+    console.log(
+      `Usuario: ${nombreUsuario}\nEmail:${email}\nPassword: ${password}\nEdad: ${age}`,
+    );
+
     if (!nombreUsuario || !email || !password || !age) {
-        return;
+      return;
     }
 
     const body = new FormData();
@@ -48,11 +52,11 @@ export const RegisterUserScreen = ({navigation}: Props) => {
       body: body,
     })
       .then(async res => {
-        const json = await res.json() as { detail: string };
+        const json = (await res.json()) as {detail: string};
 
         if (!res.ok) {
-            Alert.alert('No ha sido posible registrar al usuario', json.detail);
-            return;
+          Alert.alert('No ha sido posible registrar al usuario', json.detail);
+          return;
         }
 
         Alert.alert('Éxito', 'Usuario registrado');
@@ -120,7 +124,7 @@ export const RegisterUserScreen = ({navigation}: Props) => {
             accessoryLeft={() => <MyIcon name="person-outline" />}
             style={styles.input}
             value={nombreUsuario}
-            textContentType='username'
+            textContentType="username"
             onChangeText={setNombreUsuario}
           />
           <Input
@@ -129,7 +133,7 @@ export const RegisterUserScreen = ({navigation}: Props) => {
             accessoryLeft={() => <MyIcon name="email-outline" />}
             style={styles.input}
             value={email}
-            textContentType='emailAddress'
+            textContentType="emailAddress"
             onChangeText={setEmail}
           />
           <Input
@@ -140,7 +144,7 @@ export const RegisterUserScreen = ({navigation}: Props) => {
             style={styles.input}
             value={password}
             onChangeText={setPassword}
-            textContentType='newPassword'
+            textContentType="newPassword"
           />
           <Input
             placeholder="Edad"
@@ -148,7 +152,7 @@ export const RegisterUserScreen = ({navigation}: Props) => {
             accessoryLeft={() => <MyIcon name="hash-outline" />}
             style={styles.input}
             value={age}
-            textContentType='telephoneNumber'
+            textContentType="telephoneNumber"
             onChangeText={val => {
               if (/^\d+$/.test(val)) {
                 setAge(val);
