@@ -5,39 +5,27 @@ export interface IMatch {
 
 export const matches: IMatch[] = [
     {
-        firstTeamId: 'leicester',
-        secondTeamId: 'chelsea'
+        firstTeamId: 'SOUTHAMPTON',
+        secondTeamId: 'LIVERPOOL'
     },
     {
-        firstTeamId: 'arsenal',
-        secondTeamId: 'nottm-forest'
+        firstTeamId: 'ARSENAL',
+        secondTeamId: 'LIVERPOOL'
     },
     {
-        firstTeamId: 'aston-villa',
-        secondTeamId: 'crystal-palace'
+        firstTeamId: 'MAN CITY',
+        secondTeamId: 'SPURS'
     },
     {
-        firstTeamId: 'bournemouth',
-        secondTeamId: 'brighton'
+        firstTeamId: 'BOURNEMOUTH',
+        secondTeamId: 'BRIGHTON'
     },
     {
-        firstTeamId: 'everton',
-        secondTeamId: 'brentford'
+        firstTeamId: 'LEICESTER',
+        secondTeamId: 'CHELSEA'
     },
     {
-        firstTeamId: 'fulham',
-        secondTeamId: 'wolves'
-    },
-    {
-        firstTeamId: 'manchester',
-        secondTeamId: 'spurs'
-    },
-    {
-        firstTeamId: 'southampton',
-        secondTeamId: 'liverpool'
-    },
-    {
-        firstTeamId: 'newcastle',
-        secondTeamId: 'west-ham'
+        firstTeamId: 'ARSENAL',
+        secondTeamId: "NOTT'M FOREST"
     }
 ];

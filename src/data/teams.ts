@@ -10,118 +10,118 @@ export interface ITeam {
 
 export const teams: ITeam[] = [
     {
-        id: 'arsenal',
+        id: 'ARSENAL',
         name: 'Arsenal',
         logo: require(`${logosPath}arsenal.png`)
     },
     {
-        id: 'aston-villa',
+        id: 'ASTON VILLA',
         name: 'Aston Villa',
         logo: require(`${logosPath}aston-villa.png`)
     },
     {
-        id: 'brentford',
+        id: 'BRENTFORD',
         name: 'Brentford',
         logo: require(`${logosPath}brentford.png`)
     },
     {
-        id: 'brighton',
+        id: 'BRIGHTON',
         name: 'Brighton',
         logo: require(`${logosPath}brighton.png`)
     },
     {
-        id: 'bournemouth',
+        id: 'BOURNEMOUTH',
         name: 'Bournemouth',
         logo: require(`${logosPath}bournemouth.png`)
     },
     {
-        id: 'burnley',
+        id: 'BURNLEY',
         name: 'Burnley',
         logo: require(`${logosPath}burnley.png`)
     },
     {
-        id: 'chelsea',
+        id: 'CHELSEA',
         name: 'Chelsea',
         logo: require(`${logosPath}chelsea.png`)
     },
     {
-        id: 'crystal-palace',
+        id: 'CRYSTAL PALACE',
         name: 'Crystal Palace',
         logo: require(`${logosPath}crystal-palace.png`)
     },
     {
-        id: 'everton',
+        id: 'EVERTON',
         name: 'Everton',
         logo: require(`${logosPath}everton.png`)
     },
     {
-        id: 'fulham',
+        id: 'FULHAM',
         name: 'Fulham',
         logo: require(`${logosPath}fulham.png`)
     },
     {
-        id: 'leeds',
+        id: 'LEEDS',
         name: 'Leeds',
         logo: require(`${logosPath}leeds.png`)
     },
     {
-        id: 'leicester',
+        id: 'LEICESTER',
         name: 'Leicester',
         logo: require(`${logosPath}leicester.png`)
     },
     {
-        id: 'liverpool',
+        id: 'LIVERPOOL',
         name: 'Liverpool',
         logo: require(`${logosPath}liverpool.png`)
     },
     {
-        id: 'man-utd',
+        id: 'MAN UTD',
         name: 'Manchester United',
         logo: require(`${logosPath}man-utd.png`)
     },
     {
-        id: 'manchester',
+        id: 'MAN CITY',
         name: 'Manchester City',
         logo: require(`${logosPath}manchester.png`)
     },
     {
-        id: 'newcastle',
+        id: 'NEWCASTLE',
         name: 'Newcastle',
         logo: require(`${logosPath}newcastle.png`)
     },
     {
-        id: 'norwich',
+        id: 'NORWICH',
         name: 'Norwich',
         logo: require(`${logosPath}norwich.png`)
     },
     {
-        id: 'southampton',
+        id: 'SOUTHAMPTON',
         name: 'Southampton',
         logo: require(`${logosPath}southampton.png`)
     },
     {
-        id: 'spurs',
+        id: 'SPURS',
         name: 'Spurs',
         logo: require(`${logosPath}spurs.png`)
     },
     {
-        id: 'watford',
+        id: 'WATFORD',
         name: 'Watford',
         logo: require(`${logosPath}watford.png`)
     },
     {
-        id: 'west-ham',
+        id: 'WEST HAM',
         name: 'West ham',
         logo: require(`${logosPath}west-ham.png`)
     },
     {
-        id: 'wolves',
+        id: 'WOLVES',
         name: 'Wolves',
         logo: require(`${logosPath}wolves.png`)
     },
     {
-        id: 'nottm-forest',
-        name: 'Nottingham Forest',
+        id: "NOTT'M FOREST",
+        name: "Nott'm Forest",
         logo: require(`${logosPath}nottm-forest.png`)
     }
 ];
