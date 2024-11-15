@@ -38,7 +38,8 @@ export const MyButton = ({
         styles.button,
         {
           backgroundColor: color,
-          margin,
+          marginVertical: margin,
+          marginHorizontal: 'auto',
           width:
             width === 'auto'
               ? '100%'
